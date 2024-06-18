@@ -2,6 +2,7 @@ package id.my.hendisantika.kafkasagapattern.orderservice.service;
 
 import id.my.hendisantika.kafkasagapattern.model.dto.OrderRequestDTO;
 import id.my.hendisantika.kafkasagapattern.model.dto.OrderResponseDTO;
+import id.my.hendisantika.kafkasagapattern.model.enums.OrderStatus;
 import id.my.hendisantika.kafkasagapattern.orderservice.entity.PurchaseOrder;
 import id.my.hendisantika.kafkasagapattern.orderservice.eventhandlers.OrderEventPublisherService;
 import id.my.hendisantika.kafkasagapattern.orderservice.repository.PurchaseOrderRepository;
@@ -49,5 +50,14 @@ public class OrderService {
                 .stream()
                 .map(this::entityToDto)
                 .collect(Collectors.toList());
+    }
+
+    private PurchaseOrder dtoToEntity(final OrderRequestDTO dto) {
+        PurchaseOrder purchaseOrder = new PurchaseOrder();
+        purchaseOrder.setProductId(dto.getProductId());
+        purchaseOrder.setUserId(dto.getUserId());
+        purchaseOrder.setStatus(OrderStatus.ORDER_CREATED);
+        purchaseOrder.setPrice(PRODUCT_PRICE.get(purchaseOrder.getProductId()));
+        return purchaseOrder;
     }
 }
