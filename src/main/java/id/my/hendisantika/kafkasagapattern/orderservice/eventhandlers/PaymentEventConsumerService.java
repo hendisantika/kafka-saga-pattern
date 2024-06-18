@@ -3,6 +3,7 @@ package id.my.hendisantika.kafkasagapattern.orderservice.eventhandlers;
 import id.my.hendisantika.kafkasagapattern.model.enums.OrderStatus;
 import id.my.hendisantika.kafkasagapattern.model.enums.PaymentStatus;
 import id.my.hendisantika.kafkasagapattern.model.event.PaymentEvent;
+import id.my.hendisantika.kafkasagapattern.orderservice.repository.PurchaseOrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,14 +1,18 @@
 package id.my.hendisantika.kafkasagapattern.orderservice.controller;
 
 import id.my.hendisantika.kafkasagapattern.model.dto.OrderRequestDTO;
+import id.my.hendisantika.kafkasagapattern.model.dto.OrderResponseDTO;
 import id.my.hendisantika.kafkasagapattern.orderservice.entity.PurchaseOrder;
 import id.my.hendisantika.kafkasagapattern.orderservice.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -30,5 +34,10 @@ public class OrderController {
     @PostMapping("/create")
     public PurchaseOrder createOrder(@RequestBody OrderRequestDTO dto) {
         return this.orderService.createOrder(dto);
+    }
+
+    @GetMapping("/all")
+    public List<OrderResponseDTO> getOrders() {
+        return this.orderService.getAll();
     }
 }
