@@ -1,6 +1,7 @@
 package id.my.hendisantika.kafkasagapattern.orderservice.eventhandlers;
 
 import id.my.hendisantika.kafkasagapattern.model.event.OrderEvent;
+import id.my.hendisantika.kafkasagapattern.orderservice.configuration.orderservice.entity.PurchaseOrder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,4 +22,12 @@ import reactor.core.publisher.FluxSink;
 public class OrderEventPublisherService {
 
     private final FluxSink<OrderEvent> orderEventChannel;
+
+    public void raiseOrderCreatedEvent(final PurchaseOrder purchaseOrder) {
+        OrderEvent orderEvent = new OrderEvent();
+        orderEvent.setUserId(purchaseOrder.getUserId());
+        orderEvent.setPrice(purchaseOrder.getPrice());
+        orderEvent.setOrderId(purchaseOrder.getId());
+        this.orderEventChannel.next(orderEvent);
+    }
 }
