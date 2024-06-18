@@ -1,8 +1,12 @@
 package id.my.hendisantika.kafkasagapattern.orderservice.eventhandlers;
 
+import id.my.hendisantika.kafkasagapattern.model.enums.OrderStatus;
+import id.my.hendisantika.kafkasagapattern.model.enums.PaymentStatus;
+import id.my.hendisantika.kafkasagapattern.model.event.PaymentEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,4 +23,13 @@ import org.springframework.stereotype.Service;
 public class PaymentEventConsumerService {
 
     private final PurchaseOrderRepository purchaseOrderRepository;
+
+    @Transactional
+    public void consumePaymentEvent(PaymentEvent paymentEvent) {
+        this.purchaseOrderRepository.findById(paymentEvent.getOrderId())
+                .ifPresent(purchaseOrder -> {
+                    purchaseOrder.setStatus(paymentEvent.getStatus().equals(PaymentStatus.APPROVED) ? OrderStatus.ORDER_COMPLETED : OrderStatus.ORDER_CANCELLED);
+                    this.purchaseOrderRepository.save(purchaseOrder);
+                });
+    }
 }

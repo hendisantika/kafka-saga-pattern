@@ -1,7 +1,7 @@
 package id.my.hendisantika.kafkasagapattern.orderservice.eventhandlers;
 
 import id.my.hendisantika.kafkasagapattern.model.event.OrderEvent;
-import id.my.hendisantika.kafkasagapattern.orderservice.configuration.orderservice.entity.PurchaseOrder;
+import id.my.hendisantika.kafkasagapattern.orderservice.entity.PurchaseOrder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

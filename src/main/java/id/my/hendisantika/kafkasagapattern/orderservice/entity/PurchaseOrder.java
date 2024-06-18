@@ -1,4 +1,4 @@
-package id.my.hendisantika.kafkasagapattern.orderservice.configuration.orderservice.entity;
+package id.my.hendisantika.kafkasagapattern.orderservice.entity;
 
 import id.my.hendisantika.kafkasagapattern.model.enums.OrderStatus;
 import jakarta.persistence.Entity;
