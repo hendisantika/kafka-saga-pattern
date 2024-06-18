@@ -1,5 +1,7 @@
 package id.my.hendisantika.kafkasagapattern.orderservice.service;
 
+import id.my.hendisantika.kafkasagapattern.model.dto.OrderRequestDTO;
+import id.my.hendisantika.kafkasagapattern.orderservice.entity.PurchaseOrder;
 import id.my.hendisantika.kafkasagapattern.orderservice.eventhandlers.OrderEventPublisherService;
 import id.my.hendisantika.kafkasagapattern.orderservice.repository.PurchaseOrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -33,4 +35,9 @@ public class OrderService {
 
     private final OrderEventPublisherService eventPublisherService;
 
+    public PurchaseOrder createOrder(OrderRequestDTO orderRequestDTO) {
+        PurchaseOrder purchaseOrder = this.purchaseOrderRepository.save(this.dtoToEntity(orderRequestDTO));
+        this.eventPublisherService.raiseOrderCreatedEvent(purchaseOrder);
+        return purchaseOrder;
+    }
 }
