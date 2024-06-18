@@ -1,5 +1,6 @@
 package id.my.hendisantika.kafkasagapattern.orderservice.configuration;
 
+import id.my.hendisantika.kafkasagapattern.orderservice.eventhandlers.PaymentEventConsumerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
