@@ -60,4 +60,14 @@ public class OrderService {
         purchaseOrder.setPrice(PRODUCT_PRICE.get(purchaseOrder.getProductId()));
         return purchaseOrder;
     }
+
+    private OrderResponseDTO entityToDto(final PurchaseOrder purchaseOrder) {
+        OrderResponseDTO dto = new OrderResponseDTO();
+        dto.setId(purchaseOrder.getId());
+        dto.setProductId(purchaseOrder.getProductId());
+        dto.setUserId(purchaseOrder.getUserId());
+        dto.setStatus(purchaseOrder.getStatus());
+        dto.setPrice(purchaseOrder.getPrice());
+        return dto;
+    }
 }
