@@ -1,9 +1,12 @@
 package id.my.hendisantika.kafkasagapattern.orderservice.configuration;
 
+import id.my.hendisantika.kafkasagapattern.model.event.OrderEvent;
 import id.my.hendisantika.kafkasagapattern.orderservice.eventhandlers.PaymentEventConsumerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import reactor.core.publisher.DirectProcessor;
 
 /**
  * Created by IntelliJ IDEA.
@@ -20,4 +23,9 @@ import org.springframework.context.annotation.Configuration;
 public class OrderServiceConfig {
 
     private final PaymentEventConsumerService consumerService;
+
+    @Bean
+    public DirectProcessor<OrderEvent> getFlux() {
+        return DirectProcessor.create();
+    }
 }
