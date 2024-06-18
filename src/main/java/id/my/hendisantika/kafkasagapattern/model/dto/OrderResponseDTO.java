@@ -1,5 +1,6 @@
 package id.my.hendisantika.kafkasagapattern.model.dto;
 
+import id.my.hendisantika.kafkasagapattern.model.enums.OrderStatus;
 import lombok.Data;
 
 /**
