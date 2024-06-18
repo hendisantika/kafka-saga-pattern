@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import reactor.core.publisher.DirectProcessor;
+import reactor.core.publisher.FluxSink;
 
 /**
  * Created by IntelliJ IDEA.
@@ -27,5 +28,10 @@ public class OrderServiceConfig {
     @Bean
     public DirectProcessor<OrderEvent> getFlux() {
         return DirectProcessor.create();
+    }
+
+    @Bean
+    public FluxSink<OrderEvent> orderEventChannel(DirectProcessor<OrderEvent> processor) {
+        return processor.sink();
     }
 }
