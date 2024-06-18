@@ -13,3 +13,15 @@ spring.cloud.stream:
       destination: payment-events
     paymentEventConsumer-in-0:
       destination: payment-events
+springdoc:
+  version: 1.0.0
+  swagger-ui:
+    path: /swagger-ui
+  api-docs:
+    path: /v3/api-doc
+
+#logging:
+#  level:
+#    root: DEBUG
+application-description: '@project.description@'
+application-version: '@project.version@'
